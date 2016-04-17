@@ -38,12 +38,13 @@ abstract public class ApiGetWeather extends BaseApiWeather {
     private Gson gson;
     private GsonBuilder gsonBuilder;
 
-    public ApiGetWeather(Context context) {
+    public ApiGetWeather(Context context, String endpoint) {
         super(context);
 
         ajaxType = AjaxType.GET;
 //        endpointApi = "bdg.json"; //untuk yg asli: "q=bandung,id&units=metric"
-        endpointApi = "q=bandung,id&units=metric";
+//        endpointApi = "q=bandung,id&units=metric";
+        endpointApi = "q=" + endpoint + ",id&units=metric";
         apiKey = "&appid=b1b15e88fa797225412429c1c50c122a";
 
 
@@ -62,7 +63,6 @@ abstract public class ApiGetWeather extends BaseApiWeather {
                     Log.d("onSuccess", rawContent);
                     data = gson.fromJson(object, ModelWeather.class);
 
-
                     onFinishRequest(true, rawContent);
 
                 }
@@ -79,9 +79,12 @@ abstract public class ApiGetWeather extends BaseApiWeather {
                     textContent = new String(content);
                 }
                 onFinishRequest(false, textContent);
-                Log.d("onFailure", "" + content);
             }
         };
+    }
+
+    public void setEndpoint(String endpoint){
+        this.endpointApi = endpoint;
     }
 
     private static final String[] DATE_FORMATS = new String[] {

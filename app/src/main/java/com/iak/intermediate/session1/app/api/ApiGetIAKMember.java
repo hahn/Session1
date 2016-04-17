@@ -66,7 +66,6 @@ abstract public class ApiGetIAKMember extends BaseApi{
                     //ketika json berisi object Date
                     gsonBuilder = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer());
                     gson = gsonBuilder.create();
-                    Log.d(TAG, "Result : " + rawContent);
                     data = gson.fromJson(object, ModelIAKIntermediate.class);
 
                     Log.d(TAG, "Result : " + rawContent);

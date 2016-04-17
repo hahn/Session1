@@ -22,6 +22,12 @@
             android:onClick="toMemberActivity"
             android:id="@+id/btn_member" />
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtCity"
+            android:hint="Insert city..." />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
