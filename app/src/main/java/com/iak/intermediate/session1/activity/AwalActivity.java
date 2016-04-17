@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.iak.intermediate.session1.R;
 
 public class AwalActivity extends AppCompatActivity {
 
     private Button btnMember, btnWeather;
+    private EditText edtCity;
+    private String city = "Bandung";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,7 @@ public class AwalActivity extends AppCompatActivity {
 
         btnMember = (Button) findViewById(R.id.btn_member);
         btnWeather = (Button) findViewById(R.id.btn_weather);
+        edtCity = (EditText) findViewById(R.id.edtCity);
 
 
     }
@@ -31,8 +35,11 @@ public class AwalActivity extends AppCompatActivity {
     }
 
     public void toWeatherActivity(View view){
-        Snackbar.make(view, "goto Weather", Snackbar.LENGTH_SHORT).show();
+//        Snackbar.make(view, "goto Weather", Snackbar.LENGTH_SHORT).show();
+
+        city = edtCity.getText().toString();
         Intent intent = new Intent(getApplicationContext(), WeatherActivity.class);
+        intent.putExtra("city", city);
         startActivity(intent);
     }
 }
