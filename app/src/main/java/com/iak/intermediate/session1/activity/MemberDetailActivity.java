@@ -36,13 +36,13 @@ public class MemberDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_detail);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date birth;
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        Date birth;
 
         extras = getIntent().getExtras();
         member = (Member) extras.getSerializable("member");
 
-        birth = member.getGeneral_info().getBirth_date();
+//        birth = member.getGeneral_info().getBirth_date();
         txt_member_name = (TextView) findViewById(R.id.txt_member_name);
         txt_member_place_born = (TextView) findViewById(R.id.txt_member_place_born);
         txt_member_birth_date = (TextView) findViewById(R.id.txt_member_birth_date);
@@ -55,7 +55,7 @@ public class MemberDetailActivity extends AppCompatActivity {
 
         txt_member_name.setText(member.getGeneral_info().getName());
         txt_member_place_born.setText(member.getGeneral_info().getPalce_born());
-        txt_member_birth_date.setText(sdf.format(birth));
+        txt_member_birth_date.setText(member.getGeneral_info().getBirth_date());
         txt_member_address.setText(member.getGeneral_info().getAddress());
         txt_member_status.setText(member.getGeneral_info().getStatus());
         txt_member_email.setText(member.getGeneral_info().getEmail());

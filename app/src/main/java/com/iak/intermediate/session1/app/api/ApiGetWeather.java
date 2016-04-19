@@ -44,7 +44,7 @@ abstract public class ApiGetWeather extends BaseApiWeather {
         ajaxType = AjaxType.GET;
 //        endpointApi = "bdg.json"; //untuk yg asli: "q=bandung,id&units=metric"
 //        endpointApi = "q=bandung,id&units=metric";
-        endpointApi = "q=" + endpoint + ",id&units=metric";
+        endpointApi = "q=" + endpoint + "&units=metric";
         apiKey = "&appid=b1b15e88fa797225412429c1c50c122a";
 
 

@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class WeatherActivity extends AppCompatActivity {
 
-    private TextView txtCity, txtDesc, txtTemp, txtWind, txtPress, txtHumidity, txtTime, txtSunrise, txtSunset;
+    private TextView txtCity, txtDesc, txtTemp, txtWind, txtPress, txtHumidity, txtTime, txtSunrise, txtSunset, txtCoord;
     private ImageView imgIcon;
     private String urlImg, city;
     private ProgressDialog loading;
@@ -35,7 +35,12 @@ public class WeatherActivity extends AppCompatActivity {
         loading = new ProgressDialog(this);
         loading.show();
 
-        city = this.getIntent().getExtras().getString("city");
+
+        if(this.getIntent().getExtras().getString("city").equals("")){
+            city = "Bandung";
+        }else{
+            city = this.getIntent().getExtras().getString("city");
+        }
 
         txtCity = (TextView) findViewById(R.id.txt_weather_city);
         txtTime = (TextView) findViewById(R.id.txt_weather_time);
@@ -46,6 +51,7 @@ public class WeatherActivity extends AppCompatActivity {
         txtHumidity = (TextView) findViewById(R.id.txt_weather_humidity);
         txtSunrise = (TextView) findViewById(R.id.txt_weather_sunrise);
         txtSunset = (TextView) findViewById(R.id.txt_weather_sunset);
+        txtCoord = (TextView) findViewById(R.id.txt_weather_coord);
 
         imgIcon = (ImageView) findViewById(R.id.img_weather_icon);
 
@@ -103,10 +109,11 @@ public class WeatherActivity extends AppCompatActivity {
                         txtDesc.setText(weatherList.get(0).getDescription());
                         txtHumidity.setText(data.getMain().getHumidity() + "%");
                         txtPress.setText(data.getMain().getPressure() + " hpa");
-                        txtTemp.setText(data.getMain().getTemp() + " C");
-                        txtWind.setText(data.getWind().getSpeed() + " m/s");
-                        txtSunrise.setText(fRise);
-                        txtSunset.setText(fSet);
+                        txtTemp.setText(data.getMain().getTemp() + "°C");
+                        txtWind.setText(data.getWind().getSpeed() + " m/s at " + data.getWind().getDeg()+ "°");
+                        txtSunrise.setText(fRise +" (GMT+7)");
+                        txtSunset.setText(fSet+" (GMT+7)");
+                        txtCoord.setText(data.getCoord().getLon() + ", " + data.getCoord().getLat());
 
                     }
                 }
